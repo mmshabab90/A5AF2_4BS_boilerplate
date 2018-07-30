@@ -1,0 +1,50 @@
+<nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center">
+  <a href="/" class="navbar-brand d-flex w-50 mr-auto">
+    <img src="assets/img/logo.png" width="30" height="30"
+    style="margin-right: 5px;" class="d-inline-block align-top rounded-circle" alt="flareLogo">
+    FLARE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse w-100" id="collapsingNavbar3" *ngIf="true else loggedOut">
+      <ul class="navbar-nav w-100 justify-content-center">
+          <li class="nav-item active">
+              <a class="nav-link" routerLink="/alarms" routerLinkActive="active" >Alarms</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/chat" routerLinkActive="active" >Chats</a>
+          </li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+                  <img src="assets/img/user.jpg" class="rounded-circle" width="30" height="30" alt="Avatar">
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link">Logout</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<ng-template #loggedOut>
+  <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+      <ul class="navbar-nav w-100 justify-content-center">
+          <li class="nav-item active">
+              <a class="nav-link" routerLink="/login" routerLinkActive="active" >Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/signup" routerLinkActive="active" >Sign Up</a>
+          </li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+          <li class="nav-item">
+
+          </li>
+          <li class="nav-item">
+
+          </li>
+      </ul>
+  </div>
+</ng-template>
