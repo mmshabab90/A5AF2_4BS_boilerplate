@@ -1,3 +1,5 @@
+import { AuthGuard } from './services/security/guard/auth.guard';
+import { AuthService } from './services/security/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -20,6 +22,10 @@ import { AlarmListComponent } from './pages/alarms/alarm-list/alarm-list.compone
 import { AgmCoreModule } from '@agm/core';
 import { ChatListComponent } from './pages/chat/chat-list/chat-list.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,9 +50,11 @@ import { ChatListComponent } from './pages/chat/chat-list/chat-list.component';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCVZyc0CgomdFKtOSkpq2bOyXHoWpqBTaw'
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
