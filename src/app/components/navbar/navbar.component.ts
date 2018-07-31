@@ -8,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  public currentUser: any = null;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.user.subscribe( user => {
+      this.currentUser = user;
+    });
+  }
+
+  loggedIn() {
+    this.authService.isLoggedIn();
   }
 
   logOut() {

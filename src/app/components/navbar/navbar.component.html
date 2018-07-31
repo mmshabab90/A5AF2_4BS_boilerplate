@@ -6,7 +6,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
       <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse collapse w-100" id="collapsingNavbar3" *ngIf="authService.isLoggedIn else loggedOut">
+  <div class="navbar-collapse collapse w-100" id="collapsingNavbar3" *ngIf="currentUser else loggedOut">
       <ul class="navbar-nav w-100 justify-content-center">
           <li class="nav-item active">
               <a class="nav-link" routerLink="/alarms" routerLinkActive="active" >Alarms</a>

@@ -1,4 +1,3 @@
-import { AuthGuard } from './services/security/guard/auth.guard';
 import { AuthService } from './services/security/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,6 +25,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from './../environments/environment';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [

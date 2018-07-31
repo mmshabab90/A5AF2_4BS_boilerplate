@@ -8,8 +8,9 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
 
-  private user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -30,8 +31,8 @@ export class AuthService {
         .auth
         .signInWithEmailAndPassword(email, password)
         .then(value => {
-          console.log('Nice, it worked!');
           this.router.navigate(['/alarms']);
+          console.log('Nice, it worked!');
         })
         .catch(err => {
           console.log('Something went wrong:',err.message);
