@@ -1,5 +1,9 @@
+import { AuthService } from './../../services/security/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '../../../../node_modules/@angular/forms';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import { User } from '../../classes/user';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,8 +13,15 @@ import { FormGroup, FormBuilder, Validators } from '../../../../node_modules/@an
 export class SignupComponent implements OnInit {
 
   public signupForm: FormGroup;
+  private dbPath = '/users';
 
-  constructor(private fb: FormBuilder) {
+  user: FirebaseObjectObservable<User> = null;
+  users: FirebaseListObservable<User[]> = null;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+  ) {
     this.createForm();
    }
 
@@ -19,9 +30,9 @@ export class SignupComponent implements OnInit {
 
   private createForm(): void {
     this.signupForm = this.fb.group({
-      fullName: ['', [Validators.required]],
-      username: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      // fullName: ['', [Validators.required]],
+      // username: ['', [Validators.required]],
+      // phoneNumber: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -29,8 +40,10 @@ export class SignupComponent implements OnInit {
 
   public submit(): void {
     // TODO call the auth service
-    const {fullName, username, phoneNumber, email, password} = this.signupForm.value;
-    console.log(`Full Name: ${fullName}, Username: ${username}, Phone Number: ${phoneNumber}, Email: ${email}, Password: ${password}`);
+      if (this.signupForm.valid) {
+        const {email, password} = this.signupForm.value;
+        this.authService.signup(email, password);
+      }
   }
 
 }

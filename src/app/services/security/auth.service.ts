@@ -26,13 +26,26 @@ export class AuthService {
       }
     }
 
+    signup(email: string, password: string) {
+      this.firebaseAuth
+        .auth
+        .createUserWithEmailAndPassword(email, password)
+        .then(value => {
+          console.log('Registration Successful!');
+          this.router.navigate(['/alarms']);
+        })
+        .catch(err => {
+          console.log('Something went wrong:', err.message);
+        });
+    }
+
     login(email: string, password: string) {
       this.firebaseAuth
         .auth
         .signInWithEmailAndPassword(email, password)
         .then(value => {
           this.router.navigate(['/alarms']);
-          console.log('Nice, it worked!');
+          console.log('Login Successful!');
         })
         .catch(err => {
           console.log('Something went wrong:',err.message);
