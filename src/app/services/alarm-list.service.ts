@@ -19,9 +19,12 @@ export class AlarmListService {
     return this.alarms;
   }
 
-  getAlarm(key: string): FirebaseObjectObservable<any[]> {
+  getAlarm(key: string) {
     this.alarm = this.db.object(`${this.dbPath}/${key}`);
-    return this.alarm;
+    this.alarm.subscribe( alarm => {
+      console.log(alarm);
+      return alarm;
+    });
   }
 
 }

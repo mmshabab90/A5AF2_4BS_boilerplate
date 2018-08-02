@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {AlarmListService} from '../../../services/alarm-list.service';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
@@ -9,6 +9,7 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database
 })
 export class AlarmListComponent implements OnInit {
   alarms: FirebaseListObservable<any[]>;
+  alarm: FirebaseListObservable<any[]>;
 
   constructor(
     private alarmListService: AlarmListService,
