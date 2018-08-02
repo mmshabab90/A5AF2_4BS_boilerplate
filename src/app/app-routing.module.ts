@@ -11,7 +11,18 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard]  },
-  { path: 'alarms', component: AlarmsComponent, canActivate: [AuthGuard] },
+  { path: 'alarms', component: AlarmsComponent, canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: AlarmsComponent
+      },
+      {
+        path: ':id',
+        component: AlarmsComponent
+      }
+    ]
+  },
   { path: '**', redirectTo: 'login' },
 ];
 
